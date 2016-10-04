@@ -71,11 +71,11 @@ function handleUserClick() {
   } else {
     imageContainer.removeEventListener('click', handleUserClick);
   }
-  for (var i = 0; i < allProductImages.length; i++) {
-    this.numberTimesClicked += 1;
-    imageContainer.textContent = this.numberTimesClicked;
-    console.log(this.numberTimesClicked);
-  }
 };
+
+for (var i = 0; i < allProductImages.length; i++) {
+  Image.prototype.numberTimesClicked += 1;
+  imageContainer.textContent = Image.prototype.numberTimesClicked;
+}
 
 imageContainer.addEventListener('click', handleUserClick);
