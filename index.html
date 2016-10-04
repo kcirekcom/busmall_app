@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Bus Mall App</title>
     <link rel="stylesheet" href="style.css">
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js></script>
   </head>
 
   <body>
@@ -12,11 +13,16 @@
     <main>
       <section id="image-container">
 
-        <img id="left-image" src="">
-        <img id="center-image" src="">
-        <img id="right-image" src="">
+        <img id="left-image" src="" alt="">
+        <img id="center-image" src="" alt="">
+        <img id="right-image" src="" alt="">
 
       </section>
+
+      <button id="viewresults" type="click">View Results</button>
+      <ul id="pic-list"></ul>
+
+      <canvas id="voting-chart" width="800px" height="400px"></canvas>
 
     <footer>
 
