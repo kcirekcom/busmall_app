@@ -1,7 +1,7 @@
 'use strict';
 
 var allProductImages = [];
-// var imageContainer = document.getElementById('image-container');
+var imageContainer = document.getElementById('image-container');
 
 function Product(imageName, filePath) {
   this.name = imageName;
@@ -9,17 +9,7 @@ function Product(imageName, filePath) {
   this.numberTimesDisplayed = 0;
   this.numberTimesClicked = 0;
   allProductImages.push(this);
-  // this.randImagesPerClick = []
-  // this.displayRandImages = function(){
-  //   for (var i = 0; i < productImages.length; i++) {
-  //     this.randImagesPerClick.push(Math.random(productImages[i]) * 7);
-  //   }
-  // };
 }
-
-// render = function() {
-//   var imageEl = document.createElement
-// }
 
 new Product ('Bag', 'img/bag_480.jpg');
 new Product ('Banana', 'img/banana.jpg');
@@ -49,21 +39,38 @@ var right = document.getElementById('right-image');
 var leftIndex;
 var centerIndex;
 var rightIndex;
+var counter = 0;
 
-var randomIndex = function() {
-  for (var i = 0; i < allProductImages.length; i++) {
-    leftIndex = Math.floor(Math.random() * allProductImages.length);
-    centerIndex = Math.floor(Math.random() * allProductImages.length);
-    rightIndex = Math.floor(Math.random() * allProductImages.length);
+render();
+
+function render() {
+  var randomIndex = function() {
+    for (var i = 0; i < allProductImages.length; i++) {
+      leftIndex = Math.floor(Math.random() * allProductImages.length);
+      centerIndex = Math.floor(Math.random() * allProductImages.length);
+      rightIndex = Math.floor(Math.random() * allProductImages.length);
+    }
+  };
+
+  randomIndex();
+
+  while (leftIndex === centerIndex || leftIndex === rightIndex || centerIndex === rightIndex) {
+    randomIndex();
+  }
+
+  left.src = allProductImages[leftIndex].filePath;
+  center.src = allProductImages[centerIndex].filePath;
+  right.src = allProductImages[rightIndex].filePath;
+};
+
+function handleUserClick() {
+  if (counter < 25) {
+    onclick = counter++;
+    console.log(counter);
+    render();
+  } else {
+    imageContainer.removeEventListener('click', handleUserClick);
   }
 };
 
-randomIndex();
-
-if (leftIndex === centerIndex || leftIndex === rightIndex || centerIndex === rightIndex) {
-  randomIndex();
-}
-
-left.src = allProductImages[leftIndex].filePath;
-center.src = allProductImages[centerIndex].filePath;
-right.src = allProductImages[rightIndex].filePath;
+imageContainer.addEventListener('click', handleUserClick);
