@@ -2,6 +2,8 @@
 
 //Variable declarations
 var allProductImages = [];
+var dataArrayNames = [];
+var dataArrayVotes = [];
 // var currentlyShowing = [];
 // previouslyShown = [];
 var imageContainer = document.getElementById('image-container');
@@ -9,6 +11,7 @@ var left = document.getElementById('left-image');
 var center = document.getElementById('center-image');
 var right = document.getElementById('right-image');
 var viewResults = document.getElementById('viewresults');
+var viewChart = document.getElementById('draw-chart');
 var votingChart;
 var leftIndex;
 var centerIndex;
@@ -46,6 +49,16 @@ new Product ('Water Can', 'img/water-can.jpg');
 new Product ('Wine Glass', 'img/wine-glass.jpg');
 
 //function declarations
+
+function showData() {
+  for (var i = 0; i < allProductImages.length; i++) {
+    var dataNames = allProductImages[i].name;
+    dataArrayNames.push(dataNames);
+    var storeClicks = allProductImages[i].numberTimesClicked;
+    dataArrayVotes.push(storeClicks);
+  }
+};
+
 displayPics();
 
 function displayPics() {
@@ -80,7 +93,6 @@ function displayPics() {
   allProductImages[leftIndex].numberTimesViewed += 1;
   allProductImages[centerIndex].numberTimesViewed += 1;
   allProductImages[rightIndex].numberTimesViewed += 1;
-  //currentlyShowing = [leftIndex, centerIndex, rightIndex];
 };
 
 //event handlers
@@ -116,12 +128,12 @@ function handleDisplayResults() {
   displayList();
 };
 
+
 //Chart stuff
 var data = {
-  labels: allProductImages,
+  labels: dataArrayNames,
   datasets: [
     {
-      data: allProductImages[i].numberTimesClicked,
       backgroundColor: [
         'lightblue',
         'navy',
@@ -165,13 +177,16 @@ var data = {
         'black',
         'black',
         'black'
-      ]
-    }]
+      ],
+      data: dataArrayVotes,
+    }
+  ]
 };
 
 function drawChart() {
+  showData();
   var ctx = document.getElementById('voting-chart').getContext('2d');
-  votingChart = new Chart(ctx,{
+  votingChart = new Chart(ctx, {
     type: 'bar',
     data: data,
     options: {
@@ -190,3 +205,6 @@ function drawChart() {
 //event listeners
 imageContainer.addEventListener('click', handleUserClick);
 viewResults.addEventListener('click', handleDisplayResults);
+viewChart.addEventListener('click', function() {
+  drawChart();
+});
