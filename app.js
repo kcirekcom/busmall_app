@@ -4,8 +4,6 @@
 var allProductImages = [];
 var dataArrayNames = [];
 var dataArrayVotes = [];
-// var currentlyShowing = [];
-// previouslyShown = [];
 var imageContainer = document.getElementById('image-container');
 var left = document.getElementById('left-image');
 var center = document.getElementById('center-image');
@@ -72,9 +70,21 @@ function displayPics() {
 
   randomIndex();
 
-  // while(arrayOfNums[0] === previousArray[0] || arrayOfNums[0] === previousArray[1] || arrayOfNums[0] === previousArray[2]) {
-  //   //duplicate between first number and something in previous set of images
-  //   arrayOfNums[0] = makeRand();
+  //  var totalSet = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  //  var previousSet = [5, 15, 19];
+  //
+  // function calcNewPool(totalSet, value) {
+  //   for (var i = 0; i < totalSet.length; i++) {
+  //     if (value === totalSet[i]) {
+  //       totalSet.splice(i, 1);
+  //     }
+  //   }
+  // }
+  //
+  // calcNewPool();
+  //
+  // function nextSet(totalSet, previousSet) {
+  //   return newSet
   // }
 
   while (leftIndex === centerIndex || leftIndex === rightIndex || centerIndex === rightIndex) {
