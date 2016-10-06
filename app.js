@@ -2,6 +2,8 @@
 
 //Variable declarations
 var allProductImages = [];
+var previousImages = [];
+var newImages = [];
 var dataArrayNames = [];
 var dataArrayVotes = [];
 var imageContainer = document.getElementById('image-container');
@@ -16,7 +18,7 @@ var centerIndex;
 var rightIndex;
 var counter = 0;
 
-//Constructor and instances
+//Constructor
 function Product(imageName, filePath) {
   this.name = imageName;
   this.filePath = filePath;
@@ -36,18 +38,20 @@ function showData() {
   }
 };
 
-function displayPics() {
-  var randomIndex = function() {
-    for (var i = 0; i < allProductImages.length; i++) {
-      leftIndex = Math.floor(Math.random() * allProductImages.length);
-      centerIndex = Math.floor(Math.random() * allProductImages.length);
-      rightIndex = Math.floor(Math.random() * allProductImages.length);
-    }
-  };
+function randomIndex() {
+  for (var i = 0; i < allProductImages.length; i++) {
+    leftIndex = Math.floor(Math.random() * allProductImages.length);
+    centerIndex = Math.floor(Math.random() * allProductImages.length);
+    rightIndex = Math.floor(Math.random() * allProductImages.length);
+  }
+  newImages = [];
+  newImages.push(leftIndex, centerIndex, rightIndex);
+};
 
+function displayPics() {
   randomIndex();
 
-  while (leftIndex === centerIndex || leftIndex === rightIndex || centerIndex === rightIndex) {
+  while (leftIndex === centerIndex || leftIndex === rightIndex || centerIndex === rightIndex || newImages[0] === previousImages[0] || newImages[0] === previousImages[1] || newImages[0] === previousImages[2] || newImages[1] === previousImages[0] || newImages[1] === previousImages[1] || newImages[1] === previousImages[2] || newImages[2] === previousImages[0] || newImages[2] === previousImages[1] || newImages[2] === previousImages[2]) {
     console.log('duplicate caught');
     randomIndex();
   }
@@ -65,11 +69,17 @@ function displayPics() {
   allProductImages[rightIndex].numberTimesViewed += 1;
 };
 
+function updatePreviousArray() {
+  previousImages.push(leftIndex, centerIndex, rightIndex);
+};
+
 //event handlers
 function handleUserClick() {
   if(event.target.id === 'image-container') {
     return alert('Click on a picture!');
   }
+  previousImages = [];
+  updatePreviousArray();
   if (counter < 25) {
     onclick = counter++;
     console.log(counter);
@@ -173,6 +183,7 @@ function drawChart() {
   });
 };
 
+//instances within local storage
 function storeData(){
   console.log('storeData');
   var allProductImagesStringified = JSON.stringify(allProductImages);
@@ -209,6 +220,7 @@ if (localStorage.getItem('allProductImagesStringified')){
 }
 
 displayPics();
+// updatePreviousArray();
 
 //event listeners
 imageContainer.addEventListener('click', handleUserClick);
