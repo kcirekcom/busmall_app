@@ -193,8 +193,8 @@ function storeData(){
 if (localStorage.getItem('allProductImagesStringified')){
   var allProductImagesRetrieved = localStorage.getItem('allProductImagesStringified');
   var allProductImagesParsed = JSON.parse(allProductImagesRetrieved);
-  console.log(allProductImagesRetrieved);
-  console.log(allProductImagesParsed);
+  // console.log(allProductImagesRetrieved);
+  // console.log(allProductImagesParsed);
   allProductImages = allProductImagesParsed;
 } else {
   new Product ('Bag', 'img/bag_480.jpg');
