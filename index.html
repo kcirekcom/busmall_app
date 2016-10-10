@@ -4,27 +4,31 @@
     <meta charset="utf-8">
     <title>Bus Mall App</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth" rel="stylesheet">
     <script src=https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js></script>
   </head>
 
   <body>
-    <header>Bus Mall Market Research</header>
+    <header>BusMall Market Research</header>
 
     <main>
+      <p>Hello, future customer! Please take some time to take this quick survey. This survey will consist of 25 rounds of voting on random products. This research will assist us in providing the best products for the best customer experience as the opening for our new mall location approaches on November 12th, 2016. If you have any questions or suggestions, feel free to email customerservice@busmall.com. Thank you!</p>
+
       <section id="image-container">
         <img id="left-image" src="" alt="">
         <img id="center-image" src="" alt="">
         <img id="right-image" src="" alt="">
       </section>
 
-      <button id="viewresults" type="click">View Results</button>
+      <div class="buttons">
+        <button id="viewresults" type="click">View Results</button>
+        <button id="draw-chart">Click here to see a chart!</button>
+      </div>
+
       <ul id="pic-list"></ul>
 
-      <button id="draw-chart">Click here to see a chart!</button>
-
       <canvas id="voting-chart" width="800px" height="400px"></canvas>
-
-    <footer>
+    </main>
 
     <script src="app.js"></script>
   </body>
